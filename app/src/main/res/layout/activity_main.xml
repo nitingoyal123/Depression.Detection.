@@ -128,6 +128,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -141,7 +142,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
->>>>>>> 999eeab (Created activity_info_activty.xml, activity_main.xml, activity_splash_screen.xml.)
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -13,6 +13,15 @@
         android:theme="@style/Theme.DetectDepression"
         tools:targetApi="31">
         <activity
+            android:name=".TestResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubjectiveQuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ObjectiveQuestionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".InfoActivty"
             android:exported="false" />
         <activity
