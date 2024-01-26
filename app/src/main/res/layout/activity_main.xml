@@ -24,7 +24,7 @@
 
 
         <TextView
-            android:id="@+id/txtHeading"
+            android:id="@+id/txtEnterDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -37,15 +37,16 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+
+            android:id="@+id/edtNameLayout"
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/txtHeading"
-            app:layout_constraintStart_toStartOf="@+id/txtHeading"
-            app:layout_constraintTop_toBottomOf="@+id/txtHeading">
+            app:layout_constraintEnd_toEndOf="@+id/txtEnterDetails"
+            app:layout_constraintStart_toStartOf="@+id/txtEnterDetails"
+            app:layout_constraintTop_toBottomOf="@+id/txtEnterDetails">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtName"
@@ -60,15 +61,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
+            android:id="@+id/edtAgeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintEnd_toEndOf="@+id/edtNameLayout"
+            app:layout_constraintStart_toStartOf="@+id/edtNameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/edtNameLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtAge"
@@ -83,15 +84,15 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
+            android:id="@+id/edtPhoneNumberLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintEnd_toEndOf="@+id/edtAgeLayout"
+            app:layout_constraintStart_toStartOf="@+id/edtAgeLayout"
+            app:layout_constraintTop_toBottomOf="@+id/edtAgeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPhoneNumber"
@@ -105,15 +106,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
+            android:id="@+id/edtEmailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+            app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumberLayout"
+            app:layout_constraintStart_toStartOf="@+id/edtPhoneNumberLayout"
+            app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEmail"
@@ -129,6 +130,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
+            android:onClick="btnNextClicked"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -140,7 +142,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
