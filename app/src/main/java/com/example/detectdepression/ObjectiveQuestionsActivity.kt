@@ -39,10 +39,28 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
         database = Firebase.database
         reference = database.getReference(OBJECTIVE_QUESTIONS)
 
-        loadQuestions()
+        if (questions.size == 0) {
+            loadQuestions()
+        } else {
+            setQuestions()
+        }
 
         binding.btnNext.setOnClickListener {
             btnNext()
+        }
+
+        binding.btnPrevious.setOnClickListener {
+            btnPrevious()
+        }
+    }
+
+    private fun btnPrevious() {
+        if(QUESTION_NUMBER == 1) {
+            startActivity(Intent(this@ObjectiveQuestionsActivity,InfoActivty::class.java))
+            finish()
+        } else {
+            QUESTION_NUMBER--
+            setQuestions()
         }
     }
 

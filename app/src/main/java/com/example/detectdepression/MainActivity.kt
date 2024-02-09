@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         db = FirebaseFirestore.getInstance()
-
+        binding.progressBar.visibility = View.INVISIBLE
 //        applyEditTextChnages()
     }
 
@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun btnNextClicked(view : View) {
-
         binding.apply {
+            progressBar.visibility = View.VISIBLE
             patientName = edtName.text.toString().trim()
             patientAge = edtAge.text.toString().trim()
             patientPhoneNumber = edtPhoneNumber.text.toString().trim()

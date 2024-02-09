@@ -13,6 +13,21 @@
         android:theme="@style/Theme.DetectDepression"
         tools:targetApi="31">
         <activity
+            android:name=".PatientLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OperationsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DoctorLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestResultActivity"
             android:exported="false" />
         <activity
@@ -20,27 +35,22 @@
             android:exported="false" />
         <activity
             android:name=".ObjectiveQuestionsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".InfoActivty"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>
