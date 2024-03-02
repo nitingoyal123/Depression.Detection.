@@ -11,14 +11,22 @@ import com.example.detectdepression.databinding.ActivityObjectiveQuestionsBindin
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import io.grpc.Server
 
 class ObjectiveQuestionsActivity : AppCompatActivity() {
+
+    private lateinit var firestore : FirebaseFirestore
+
     private lateinit var binding : ActivityObjectiveQuestionsBinding
 
     private lateinit var database: FirebaseDatabase
 
     private lateinit var reference : DatabaseReference
+
+    private var PATIENT_RESULTS_COLLECTION = "PatientResults"
 
     private var QUESTION_NUMBER = 1
 
@@ -32,12 +40,24 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
 
     private var questions = ArrayList<String>()
 
+    private var SCORE_ARRAY = "Score Array"
+
     private var OBJECTIVE_QUESTIONS = "ObjectiveQuestions"
+
+    private val PATIENT_ID = "PatientId"
+
+    private var DOC_NAME = "DoctorName"
+
+    lateinit var docName : String
+
+    lateinit var patientId : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_objective_questions)
         database = Firebase.database
-        reference = database.getReference(OBJECTIVE_QUESTIONS)
+        firestore = FirebaseFirestore.getInstance()
+        patientId = intent.getStringExtra(PATIENT_ID)!!
+        docName = intent.getStringExtra(DOC_NAME)!!
 
         if (questions.size == 0) {
             loadQuestions()
@@ -66,6 +86,7 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
 
     private fun loadQuestions() {
 
+        reference = database.getReference(OBJECTIVE_QUESTIONS)
         reference.get().addOnSuccessListener {
             for (question in it.children) {
                 questions.add(question.value.toString())
@@ -101,6 +122,7 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
                 }
                 options.clearCheck()
                 if (QUESTION_NUMBER == TOTAL_QUESTIONS || btnNext.text.toString() == "Submit") {
+                    binding.progressBar.progress = 90
 
                     //calculate total score
                     for (i in scoreArray) {
@@ -109,9 +131,12 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
                     Toast.makeText(this@ObjectiveQuestionsActivity, "SCORE : $score", Toast.LENGTH_SHORT).show()
 
                     //next activity
-                    startActivity(Intent(this@ObjectiveQuestionsActivity,SubjectiveQuestionsActivity::class.java))
+                    var intent = Intent(this@ObjectiveQuestionsActivity,SubjectiveQuestionsActivity::class.java)
+                    intent.putIntegerArrayListExtra(SCORE_ARRAY,scoreArray)
+                    intent.putExtra(SCORE,score)
+                    intent.putExtra(PATIENT_ID,patientId)
+                    startActivity(intent)
                     finish()
-
 
                 } else {
                     QUESTION_NUMBER++
@@ -120,16 +145,15 @@ class ObjectiveQuestionsActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun setQuestions() {
 
         binding.apply {
-
             txtQuestion.text = questions[QUESTION_NUMBER-1]
-
+            binding.progressBar.progress = (QUESTION_NUMBER-1)*10
             if (QUESTION_NUMBER == 1) {
-                btnPrevious.text = "Back"
+                binding.btnPrevious.visibility = View.GONE
             } else {
+                binding.btnPrevious.visibility = View.VISIBLE
                 btnPrevious.text = "Previous"
             }
             if (QUESTION_NUMBER == TOTAL_QUESTIONS) {

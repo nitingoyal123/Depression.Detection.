@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.example.detectdepression.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Date
+import java.util.Objects
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +44,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var patientPhoneNumber : String
     lateinit var patientEmail : String
     lateinit var date : String
+    private val PATIENT_ID = "PatientId"
+    private var DOC_NAME = "DoctorName"
+    lateinit var docName : String
+    lateinit var patientId : String
+    lateinit var patientGender : String
     var score : String = "none"
     var objectiveDepressionLevel = "none"
     var subjectiveDepressionLevel = "none"
@@ -50,15 +57,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         db = FirebaseFirestore.getInstance()
+        docName = intent.getStringExtra(DOC_NAME)!!
+        patientId = intent.getStringExtra(PATIENT_ID)!!
+
         binding.progressBar.visibility = View.INVISIBLE
-//        applyEditTextChnages()
+
     }
 
-    private fun loadData() {
-        GlobalScope.launch(Dispatchers.IO) {
-
-        }
-    }
+//    private fun loadData() {
+//        GlobalScope.launch(Dispatchers.IO) {
+//
+//        }
+//    }
 
 //    private fun applyEditTextChnages() {
 //        binding.apply {
@@ -77,13 +87,9 @@ class MainActivity : AppCompatActivity() {
             patientAge = edtAge.text.toString().trim()
             patientPhoneNumber = edtPhoneNumber.text.toString().trim()
             patientEmail = edtEmail.text.toString().trim()
-            //current date
-            val currentDate = LocalDate.now()
-            val dateFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-            date = currentDate.format(dateFormatter)
 
 
-
+            //deal with it
             if (TextUtils.isEmpty(patientName)) {
                 edtName.setBackgroundColor(resources.getColor(R.color.purple_200))
             } else {
@@ -104,21 +110,37 @@ class MainActivity : AppCompatActivity() {
             } else {
                 edtEmail.background = null
             }
+            if (radioGroupGender.checkedRadioButtonId != -1) {
+                patientGender = when(radioGroupGender.checkedRadioButtonId) {
+                    R.id.rbMale -> "Male"
+                    R.id.rbFemale -> "Female"
+                    else -> "Other"
+                }
+            } else {
+                rbFemale.setBackgroundColor(resources.getColor(R.color.purple_200))
+                rbMale.setBackgroundColor(resources.getColor(R.color.purple_200))
+                rbOther.setBackgroundColor(resources.getColor(R.color.purple_200))
+            }
 
             if (!(TextUtils.isEmpty(patientName) || TextUtils.isEmpty(patientAge) ||  TextUtils.isEmpty(patientPhoneNumber) || TextUtils.isEmpty(patientEmail))) {
 
-                var details = hashMapOf<String,String>(
+                var details = hashMapOf(
+                    "Id" to patientId,
                     "Name" to patientName,
                     "Age" to patientAge,
+                    "Gender" to patientGender,
                     "Phone Number" to patientPhoneNumber,
                     "Email" to patientEmail,
-                    "Date" to date,
-                    "Score" to "0"
+                    "Doc Name" to docName,
+                    "Date" to FieldValue.serverTimestamp(),
+                    "Score" to 0,
+                    "Result" to "No"
                 )
 
-                db.collection(PATIENT_DETAIL_COLLECTION).document(patientEmail).set(details).addOnSuccessListener {
+                db.collection(PATIENT_DETAIL_COLLECTION).document(patientId).set(details).addOnSuccessListener {
                     val intent = Intent(this@MainActivity,InfoActivty::class.java)
-                    intent.putExtra("Email",patientEmail)
+                    intent.putExtra(PATIENT_ID,patientId)
+                    intent.putExtra(DOC_NAME,docName)
                     startActivity(intent)
                     finish()
 

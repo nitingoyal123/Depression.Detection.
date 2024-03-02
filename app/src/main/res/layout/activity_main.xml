@@ -9,6 +9,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="10dp"
+            android:orientation="vertical"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="10dp"
+            android:orientation="horizontal"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_end="10dp"
+            android:orientation="horizontal"/>
+
+
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,30 +55,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Enter your Details"
-            android:layout_marginTop="30dp"
+            android:layout_margin="@dimen/_12sdp"
+            android:text="Enter Details"
             android:textSize="32sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintEnd_toEndOf="@id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
+            app:layout_constraintTop_toTopOf="@id/gd2" />
+
+        <TextView
+            android:id="@+id/txtpatientID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/_12sdp"
+            android:text="ID : kkuhjfts12"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="@id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
+            app:layout_constraintTop_toBottomOf="@id/txtEnterDetails" />
 
 
         <com.google.android.material.textfield.TextInputLayout
 
             android:id="@+id/edtNameLayout"
-            android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/_12sdp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/txtEnterDetails"
-            app:layout_constraintStart_toStartOf="@+id/txtEnterDetails"
-            app:layout_constraintTop_toBottomOf="@+id/txtEnterDetails">
+            app:layout_constraintEnd_toEndOf="@+id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
+            app:layout_constraintTop_toBottomOf="@+id/txtpatientID">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtName"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
@@ -62,20 +99,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtAgeLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/_12sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/edtNameLayout"
-            app:layout_constraintStart_toStartOf="@+id/edtNameLayout"
+            app:layout_constraintEnd_toEndOf="@+id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
             app:layout_constraintTop_toBottomOf="@+id/edtNameLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:hint="Age"
                 android:inputType="textPersonName"
                 android:textSize="23sp" />
@@ -85,20 +119,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtPhoneNumberLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/_12sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/edtAgeLayout"
-            app:layout_constraintStart_toStartOf="@+id/edtAgeLayout"
+            app:layout_constraintEnd_toEndOf="@+id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
             app:layout_constraintTop_toBottomOf="@+id/edtAgeLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:hint="Phone Number"
                 android:inputType="textPersonName"
                 android:textSize="23sp" />
@@ -107,52 +138,82 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edtEmailLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_margin="@dimen/_12sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumberLayout"
-            app:layout_constraintStart_toStartOf="@+id/edtPhoneNumberLayout"
+            app:layout_constraintEnd_toEndOf="@+id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
             app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumberLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:hint="Email Id"
                 android:inputType="textPersonName"
                 android:textSize="23sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/_12sdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/gd3"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
+            app:layout_constraintTop_toBottomOf="@id/edtEmailLayout">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="19sp"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textSize="19sp"/>
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbOther"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:textSize="19sp"/>
+
+        </RadioGroup>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnNext"
-            app:layout_constraintEnd_toEndOf="parent"
             android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout" />
+            app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+            app:layout_constraintEnd_toEndOf="@id/gd3"
+            app:layout_constraintStart_toStartOf="@id/gd1"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupGender" />
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
+            android:id="@+id/btnAdd"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_shape_patient_details"
             android:gravity="center"
             android:onClick="btnNextClicked"
-            android:text="Next"
+            android:text="Add"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="29sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/gd4"
+            app:layout_constraintEnd_toEndOf="@id/gd3"
+            app:layout_constraintStart_toStartOf="@id/gd1"
             app:layout_constraintTop_toBottomOf="@+id/edtEmailLayout"
             app:layout_constraintVertical_bias="0.6" />
 

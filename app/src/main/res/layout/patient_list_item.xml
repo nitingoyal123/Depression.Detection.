@@ -2,6 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <data>
+
+        <variable
+            name="PatientListItemInfo"
+            type="com.example.detectdepression.models.PatientListItemInfo" />
+
+    </data>
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvListItem"
         app:layout_constraintBottom_toBottomOf="parent"

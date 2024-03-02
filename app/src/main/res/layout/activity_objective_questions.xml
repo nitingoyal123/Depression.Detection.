@@ -14,7 +14,7 @@
             android:id="@+id/progressBar2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +46,14 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_20sdp"
+                app:layout_constrainedHeight="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:max="100"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:progressTint="@color/purple_200"
+                android:max="90"
                 android:progress="0"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,6 +134,7 @@
                 android:id="@+id/btnPrevious"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@drawable/button_shape_patient_details"
                 android:text="Previous"
                 android:textSize="19sp"

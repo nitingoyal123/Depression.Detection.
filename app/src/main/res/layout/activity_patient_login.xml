@@ -9,6 +9,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_10sdp"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/_10sdp"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/_10sdp"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_10sdp"/>
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -22,13 +47,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gd3"
+            app:layout_constraintEnd_toEndOf="@+id/gd4"
+            app:layout_constraintStart_toStartOf="@+id/gd1"
+            app:layout_constraintTop_toTopOf="@+id/gd2">
 
 
             <!--            <TextView-->
@@ -42,6 +66,8 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout"
+                android:paddingStart="@dimen/_3sdp"
+                android:paddingEnd="@dimen/_3sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -50,18 +76,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputLayout
 
-                    android:id="@+id/edtUsernameLoginLayout"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtDocNameLoginLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtUsernameLogin"
+                        android:id="@+id/edtDocNameLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
+                        android:hint="Doctor Name"
+                        android:inputType="textPersonName"
+                        android:textSize="23sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:id="@+id/edtPatientIdLoginLayout"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtPatientIdLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:hint="Patient Id"
                         android:inputType="textPersonName"
                         android:textSize="23sp" />
@@ -76,40 +120,21 @@
                     android:textColor="#850ACC"
                     android:textStyle="bold"
                     android:gravity="end"
-                    android:textSize="17sp"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/edtPasswordLoginLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtPasswordLogin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:hint="Doctor Name"
-                        android:inputType="textPersonName"
-                        android:textSize="23sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
+                    android:textSize="@dimen/_13ssp"/>
 
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNext"
-                android:layout_width="150dp"
+                android:layout_width="@dimen/_120sdp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_shape_patient_details"
                 android:gravity="center"
-                android:onClick="btnNextClicked"
+                android:onClick="btnNext"
                 android:text="Next"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="29sp"
+                android:textSize="@dimen/_24ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,9 +143,8 @@
             <TextView
                 android:id="@+id/txtDoctorLogin"
                 android:layout_width="wrap_content"
-                android:onClick=""
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:text="Login as Doctor ?"
                 android:textColor="#850ACC"
                 android:textStyle="bold"

@@ -6,7 +6,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/imageView"
@@ -54,16 +55,18 @@
                     android:id="@+id/edtUsernameLoginLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="@dimen/_2sdp"
+                    app:boxStrokeErrorColor="@color/purple_200"
                     android:layout_marginBottom="30dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtUsernameLogin"
+                        android:id="@+id/edtEmailLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:hint="Username"
-                        android:inputType="textPersonName"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
                         android:textSize="23sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -72,6 +75,8 @@
 
                     android:id="@+id/edtPasswordLoginLayout"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="@dimen/_2sdp"
+                    app:boxStrokeErrorColor="@color/purple_200"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +86,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:hint="Password"
-                        android:inputType="textPersonName"
+                        android:inputType="textPassword"
                         android:textSize="23sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +100,7 @@
                     android:textStyle="bold"
                     android:gravity="end"
                     android:textSize="17sp"
-                    android:layout_margin="12dp"/>
+                    android:layout_marginTop="12dp"/>
 
             </LinearLayout>
 
